@@ -42,14 +42,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <form method="POST" action="">
         <h2>Login</h2>
+        
         <?php if ($error): ?>
             <p style="color:red"><?php echo $error; ?></p>
+            <p><a href="forgot_password.php">Forgot Password?</a></p>
         <?php endif; ?>
+        
         <input type="email" name="email" placeholder="Email" required> 
-        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        
+        <label>
+            <input type="checkbox" onclick="togglePassword()"> Show Password
+        </label>
+        
         <button type="submit">Login</button>
-         <p>Forgot password? <a href="forgot_password.php">Reset here</a></p>
         <p>Don't have an account? <a href="registration.php">Register here</a></p>
     </form>
+
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
 </body>
 </html>
